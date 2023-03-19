@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		580B2A7029C6C6300046FB2D /* crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580B2A6F29C6C6300046FB2D /* crate.jpg */; };
+		695EA74529C6E9AA00D5EB93 /* maze.obj in Resources */ = {isa = PBXBuildFile; fileRef = 695EA74329C6E9AA00D5EB93 /* maze.obj */; };
+		695EA74629C6E9AA00D5EB93 /* newWall.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 695EA74429C6E9AA00D5EB93 /* newWall.jpeg */; };
 		BE481A5029B2DBD3005C575F /* PreloadedGeometryObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE481A4E29B2DBD2005C575F /* PreloadedGeometryObject.mm */; };
 		BE73DD04299720C70044E639 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE73DD03299720C70044E639 /* AppDelegate.swift */; };
 		BE73DD06299720C70044E639 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE73DD05299720C70044E639 /* SceneDelegate.swift */; };
@@ -34,6 +36,8 @@
 
 /* Begin PBXFileReference section */
 		580B2A6F29C6C6300046FB2D /* crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crate.jpg; sourceTree = "<group>"; };
+		695EA74329C6E9AA00D5EB93 /* maze.obj */ = {isa = PBXFileReference; lastKnownFileType = text; name = maze.obj; path = WantToCryEngine/maze.obj; sourceTree = "<group>"; };
+		695EA74429C6E9AA00D5EB93 /* newWall.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = newWall.jpeg; path = WantToCryEngine/newWall.jpeg; sourceTree = "<group>"; };
 		BE481A4E29B2DBD2005C575F /* PreloadedGeometryObject.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PreloadedGeometryObject.mm; sourceTree = "<group>"; };
 		BE481A4F29B2DBD2005C575F /* PreloadedGeometryObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PreloadedGeometryObject.hpp; sourceTree = "<group>"; };
 		BE73DD00299720C70044E639 /* WantToCryEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WantToCryEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +90,8 @@
 		BE73DCF7299720C70044E639 = {
 			isa = PBXGroup;
 			children = (
+				695EA74329C6E9AA00D5EB93 /* maze.obj */,
+				695EA74429C6E9AA00D5EB93 /* newWall.jpeg */,
 				580B2A6F29C6C6300046FB2D /* crate.jpg */,
 				BE73DD4929A1EF1F0044E639 /* cube.obj */,
 				BE73DD4729A1EA3E0044E639 /* test.jpg */,
@@ -208,6 +214,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				695EA74529C6E9AA00D5EB93 /* maze.obj in Resources */,
+				695EA74629C6E9AA00D5EB93 /* newWall.jpeg in Resources */,
 				BE73DD4A29A1EF200044E639 /* cube.obj in Resources */,
 				580B2A7029C6C6300046FB2D /* crate.jpg in Resources */,
 				BE73DD4829A1EA3E0044E639 /* test.jpg in Resources */,
