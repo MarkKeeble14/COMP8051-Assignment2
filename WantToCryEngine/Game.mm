@@ -35,11 +35,14 @@ Game::Game(GLKView* view){
     textures["tile"] = renderer.loadTexture(img2);
     CGImageRef img3 = [UIImage imageNamed:[nspathAppended stringByAppendingString: @"crate.jpg"]].CGImage;
     textures["crate"] = renderer.loadTexture(img3);
+    CGImageRef img4 = [UIImage imageNamed:[nspathAppended stringByAppendingString: @"newWall.jpeg"]].CGImage;
+    textures["wall"] = renderer.loadTexture(img4);
     
     //Load models
 //    models["helmet"] = WavefrontLoader::ReadFile(resourcePath + "halo_reach_grenadier.obj");
     models["monkey"] = WavefrontLoader::ReadFile(resourcePath + "blender_suzanne.obj");
     models["cube"] = WavefrontLoader::ReadFile(resourcePath + "cube.obj");
+    models["maze"] = WavefrontLoader::ReadFile(resourcePath + "maze.obj");
     //load models into reusable VAOs
     for(auto i : models){
         loadedGeometry[i.first] = PreloadedGeometryObject(renderer.loadGeometryVAO(i.second), models[i.first].GetRadius(), models[i.first].indices);
@@ -100,9 +103,13 @@ Game::Game(GLKView* view){
     objects["victim"].textureIndex = textures[""];
     */
     
-    objects["crate"] = GameObject(GLKVector3{0, 0, -5}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
+    objects["crate"] = GameObject(GLKVector3{0, 0, -2}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
     objects["crate"].preloadedGeometry = loadedGeometry["cube"];
     objects["crate"].textureIndex = textures["crate"];
+    
+    objects["maze"] = GameObject(GLKVector3{-6, -1, -11}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
+    objects["maze"].preloadedGeometry = loadedGeometry["maze"];
+    objects["maze"].textureIndex = textures["wall"];
 }
 
 //It seems like the renderer needs to have cycled once for some things to work.
