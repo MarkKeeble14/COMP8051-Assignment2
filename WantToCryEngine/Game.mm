@@ -33,6 +33,8 @@ Game::Game(GLKView* view){
     textures["test"] = renderer.loadTexture(img1);
     CGImageRef img2 = [UIImage imageNamed:[nspathAppended stringByAppendingString: @"tile.jpg"]].CGImage;
     textures["tile"] = renderer.loadTexture(img2);
+    CGImageRef img3 = [UIImage imageNamed:[nspathAppended stringByAppendingString: @"crate.jpg"]].CGImage;
+    textures["crate"] = renderer.loadTexture(img3);
     
     //Load models
 //    models["helmet"] = WavefrontLoader::ReadFile(resourcePath + "halo_reach_grenadier.obj");
@@ -44,10 +46,12 @@ Game::Game(GLKView* view){
     }
     
     //Create game objects
+    /*
     objects["static"] = GameObject(GLKVector3{0, -1, -5}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
     objects["static"].preloadedGeometry = loadedGeometry["cube"];
     objects["static"].textureIndex = textures["test"];
-
+     */
+    
     /*
     for(int i = 0; i <= 100; i++){
         std::string wb = std::string("wallblock").append(std::to_string(i));
@@ -57,6 +61,7 @@ Game::Game(GLKView* view){
     }
      */
     
+    /*
     objects["bottom"] = GameObject(GLKVector3{0, -5, 0}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
     objects["bottom"].preloadedGeometry = loadedGeometry["monkey"];
     objects["bottom"].color = GLKVector4{0, 0, .25, 1};
@@ -86,12 +91,18 @@ Game::Game(GLKView* view){
     objects["back"].preloadedGeometry = loadedGeometry["monkey"];
     objects["back"].color = GLKVector4{.5, 0, .5, 1};
     objects["back"].textureIndex = textures["tile"];
-
+    */
+    
+    /*
     objects["victim"] =  GameObject(GLKVector3{0, 1, -5}, GLKVector3{0, 4.712, 0}, GLKVector3{1, 1, 1});
     objects["victim"].preloadedGeometry = loadedGeometry["monkey"];
     objects["victim"].color = GLKVector4{0, 0.25, .5, 1};
     objects["victim"].textureIndex = textures[""];
+    */
     
+    objects["crate"] = GameObject(GLKVector3{0, 0, -5}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
+    objects["crate"].preloadedGeometry = loadedGeometry["cube"];
+    objects["crate"].textureIndex = textures["crate"];
 }
 
 //It seems like the renderer needs to have cycled once for some things to work.
@@ -125,6 +136,10 @@ void Game::Update(){
         firstUpdated = true;
     }
     
+    // rotate the crate
+    objects["crate"].transform.rotation =
+    GLKVector3Add(objects["crate"].transform.rotation, GLKVector3{0.0, 0.01, 0.0});
+    
     //Per-frame events - here, a spotlight attached to the camera has its position changed.
     Light l = Light();
     
@@ -132,7 +147,7 @@ void Game::Update(){
     l.color = GLKVector3{0.2, 0.2, 1};
     l.direction = rotToDir(renderer.camRot);
     l.position = renderer.camPos;
-    if (flashlightEnabled) {
+    if (flashlightEnabled) {        ∑
         l.power = 1;
     } else {
         l.power = 0;
