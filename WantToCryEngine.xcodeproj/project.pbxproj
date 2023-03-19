@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		580B2A7029C6C6300046FB2D /* crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580B2A6F29C6C6300046FB2D /* crate.jpg */; };
+		580B2A7229C6F3080046FB2D /* MazeRender.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B2A7129C6F3080046FB2D /* MazeRender.png */; };
 		695EA74529C6E9AA00D5EB93 /* maze.obj in Resources */ = {isa = PBXBuildFile; fileRef = 695EA74329C6E9AA00D5EB93 /* maze.obj */; };
 		695EA74629C6E9AA00D5EB93 /* newWall.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 695EA74429C6E9AA00D5EB93 /* newWall.jpeg */; };
 		BE481A5029B2DBD3005C575F /* PreloadedGeometryObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE481A4E29B2DBD2005C575F /* PreloadedGeometryObject.mm */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		580B2A6F29C6C6300046FB2D /* crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crate.jpg; sourceTree = "<group>"; };
+		580B2A7129C6F3080046FB2D /* MazeRender.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MazeRender.png; sourceTree = "<group>"; };
 		695EA74329C6E9AA00D5EB93 /* maze.obj */ = {isa = PBXFileReference; lastKnownFileType = text; name = maze.obj; path = WantToCryEngine/maze.obj; sourceTree = "<group>"; };
 		695EA74429C6E9AA00D5EB93 /* newWall.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = newWall.jpeg; path = WantToCryEngine/newWall.jpeg; sourceTree = "<group>"; };
 		BE481A4E29B2DBD2005C575F /* PreloadedGeometryObject.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PreloadedGeometryObject.mm; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		BE73DCF7299720C70044E639 = {
 			isa = PBXGroup;
 			children = (
+				580B2A7129C6F3080046FB2D /* MazeRender.png */,
 				695EA74329C6E9AA00D5EB93 /* maze.obj */,
 				695EA74429C6E9AA00D5EB93 /* newWall.jpeg */,
 				580B2A6F29C6C6300046FB2D /* crate.jpg */,
@@ -226,6 +229,7 @@
 				BE73DD10299720D70044E639 /* LaunchScreen.storyboard in Resources */,
 				BE73DD0D299720D70044E639 /* Assets.xcassets in Resources */,
 				BE73DD0B299720C70044E639 /* Main.storyboard in Resources */,
+				580B2A7229C6F3080046FB2D /* MazeRender.png in Resources */,
 				BE73DD1A299726730044E639 /* Shader.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

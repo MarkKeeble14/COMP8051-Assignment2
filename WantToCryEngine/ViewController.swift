@@ -21,6 +21,9 @@ class ViewController: GLKViewController {
     private var fogModeTracker: Int?;
     private var fogModeText: UITextField?;
     
+    private var consoleShown: Bool?;
+    private var consoleImage: UIImageView?;
+    
     private func setup(){
         context = EAGLContext(api: .openGLES3);
         EAGLContext.setCurrent(context);
@@ -77,7 +80,12 @@ class ViewController: GLKViewController {
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(self.doDoubleTap(_:)));
         doubleTap.numberOfTapsRequired = 2;
         view.addGestureRecognizer(doubleTap);
-
+        
+        let twoFingerDoubleTap = UITapGestureRecognizer(target: self, action: #selector(self.doTwoFingerDoubleTap(_:)));
+        twoFingerDoubleTap.numberOfTapsRequired = 2;
+        twoFingerDoubleTap.numberOfTouchesRequired = 2;
+        view.addGestureRecognizer(twoFingerDoubleTap);
+        
         // Toggle Flashlight
         let toggleLightButton = UIButton();
         toggleLightButton.setTitle("Toggle Flashlight", for: UIControl.State.normal);
@@ -145,6 +153,14 @@ class ViewController: GLKViewController {
         view.addSubview(fogModeText!);
         fogModeTracker = 0;
         setFogModeText();
+        
+        // Console
+        consoleShown = false;
+        consoleImage = UIImageView();
+        consoleImage?.frame = CGRect(x: (view.frame.width / 2) - 200, y: (view.frame.height / 2) - 200, width: 400, height: 400);
+        consoleImage?.image = UIImage(named: "MazeRender.png");
+        consoleImage?.alpha = 0.0;
+        view.addSubview(consoleImage!);
     }
     
     @objc func cycleFogMode(_sender: UIButton) {
@@ -201,6 +217,17 @@ class ViewController: GLKViewController {
     
     @objc func doDoubleTap(_ sender: UITapGestureRecognizer){
         GameEventDoubleTap(game);
+    }
+    
+    @objc func doTwoFingerDoubleTap(_ sender: UITapGestureRecognizer){
+        if (consoleShown!) {
+            consoleShown = false;
+            consoleImage?.alpha
+            = 0.0;
+        } else {
+            consoleShown = true;
+            consoleImage?.alpha = 0.5;
+        }
     }
     
     override func glkView(_ view: GLKView, drawIn rect: CGRect) {
