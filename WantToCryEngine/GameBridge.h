@@ -29,6 +29,11 @@ void GameEventPinch(struct Game* inThis, float input);
 void GameEventDoubleTap(struct Game* inThis);
 void ToggleDayNight(struct Game* inThis);
 void ToggleFlashlight(struct Game* inThis);
+void ToggleFog(struct Game* inThis);
+void ChangeFogDensity(struct Game* inThis, float changeBy);
+void NextFogMode(struct Game* inThis);
+void ChangeFogStart(struct Game* inThis, float changeBy);
+void ChangeFogEnd(struct Game* inThis, float changeBy);
 #ifdef __cplusplus
 }
 #endif

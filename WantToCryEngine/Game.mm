@@ -110,6 +110,7 @@ Game::Game(GLKView* view){
 void Game::FirstUpdate(){
     fogActive = true;
     renderer.setEnvironment(15, 40, GLKVector4{0.65, 0.7, 0.75, 1});
+    ToggleDayNight();
     
     Light l = Light();
     
@@ -172,6 +173,34 @@ void Game::ToggleDayNight() {
     } else {
         renderer.setAmbientLight(1.0);
     }
+}
+
+void Game::ToggleFog() {
+    fogActive = !fogActive;
+    renderer.setFogEnabled(fogActive);
+}
+
+void Game::NextFogMode() {
+    fogMode += 1;
+    if (fogMode > 2) {
+        fogMode = 0;
+    }
+    renderer.setFogMode(fogMode);
+}
+
+void Game::ChangeFogDensity(float changeBy) {
+    fogDensity = changeBy;
+    renderer.setFogDensity(fogDensity);
+}
+
+void Game::ChangeFogEnd(float changeBy) {
+    fogEnd = changeBy;
+    renderer.setFogEnd(fogEnd);
+}
+
+void Game::ChangeFogStart(float changeBy) {
+    fogStart = changeBy;
+    renderer.setFogStart(fogStart);
 }
 
 void Game::DrawCall(CGRect* drawArea){

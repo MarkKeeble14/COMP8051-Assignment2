@@ -35,8 +35,17 @@ public:
     void DrawCall(CGRect* drawArea);
     void ToggleDayNight();
     void ToggleFlashlight();
+    void ToggleFog();
+    void ChangeFogDensity(float changeBy);
+    void ChangeFogStart(float changeBy);
+    void ChangeFogEnd(float changeBy);
+    void NextFogMode();
 private:
     bool fogActive;
+    float fogStart;
+    float fogEnd;
+    float fogDensity;
+    int fogMode;
     bool isNight;
     bool flashlightEnabled;
     bool firstUpdated;

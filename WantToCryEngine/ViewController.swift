@@ -18,16 +18,41 @@ class ViewController: GLKViewController {
     private var context: EAGLContext?;
     private var game: OpaquePointer!;
     
+    private var fogModeTracker: Int?;
+    private var fogModeText: UITextField?;
+    
     private func setup(){
         context = EAGLContext(api: .openGLES3);
         EAGLContext.setCurrent(context);
         if let view = self.view as? GLKView, let context = context {
             view.context = context;
             delegate = self as GLKViewControllerDelegate;
+            
             //initialize game (with its renderer)
             game = NewGame(view);
         }
 
+    }
+    
+    private func setFogModeText() {
+        if (fogModeTracker! > 2) {
+            fogModeTracker = 0;
+        }
+        var stringFogMode = "";
+        switch (fogModeTracker) {
+        case 0:
+            stringFogMode = "Linear";
+            break;
+        case 1:
+            stringFogMode = "Exponential";
+            break;
+        case 2:
+            stringFogMode = "Double Exponential";
+            break;
+        default:
+            break;
+        }
+        fogModeText?.text = stringFogMode;
     }
     
     override func viewDidLoad() {
@@ -43,7 +68,6 @@ class ViewController: GLKViewController {
 
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(self.doPinch(_:)))
         view.addGestureRecognizer(pinch);
-
         
         let doubleDrag = UIPanGestureRecognizer(target: self, action: #selector(self.doDoubleDrag(_:)))
         doubleDrag.minimumNumberOfTouches = 2;
@@ -70,11 +94,91 @@ class ViewController: GLKViewController {
         toggleDayNightButton
             .backgroundColor = UIColor.red;
         toggleDayNightButton.addTarget(self, action: #selector(self.toggleDayNight), for: .touchUpInside);
-        view.addSubview(toggleDayNightButton);    }
+        view.addSubview(toggleDayNightButton);
+        
+        // Toggle Fog
+        let toggleFogButton = UIButton();
+        toggleFogButton.setTitle("Toggle Fog", for: UIControl.State.normal);
+        toggleFogButton.frame = CGRect(x: 50, y: view.frame.height - 200, width: 150, height: 50);
+        toggleFogButton
+            .backgroundColor = UIColor.blue;
+        toggleFogButton.addTarget(self, action: #selector(self.toggleFog), for: .touchUpInside);
+        view.addSubview(toggleFogButton);
+        
+        // Fog Density
+        let fogDensityTextField = UITextField();
+        fogDensityTextField.frame = CGRect(x: 50, y: view.frame.height - 300, width: 150, height: 50);
+        fogDensityTextField.addTarget(self, action: #selector(self.setFogDensity), for: UIControl.Event.editingChanged);
+        fogDensityTextField.placeholder = "Fog Density";
+        view.addSubview(fogDensityTextField);
+        
+        // Fog Start
+        let fogStartTextField = UITextField();
+        fogStartTextField.frame = CGRect(x: 50, y: view.frame.height - 350, width: 150, height: 50);
+        fogStartTextField.addTarget(self, action: #selector(self.setFogStart), for: UIControl.Event.editingChanged);
+        fogStartTextField.placeholder = "Fog Start";
+        view.addSubview(fogStartTextField);
+        
+        // Fog End
+        let fogEndTextField = UITextField();
+        fogEndTextField.frame = CGRect(x: 50, y: view.frame.height - 400, width: 150, height: 50);
+        fogEndTextField.addTarget(self, action: #selector(self.setFogEnd), for: UIControl.Event.editingChanged);
+        fogEndTextField.placeholder = "Fog End";
+        view.addSubview(fogEndTextField);
+        
+        // Fog Mode
+        // Up
+        let cycleFogModeButton = UIButton();
+        cycleFogModeButton.setTitle("Cycle Fog Mode", for: UIControl.State.normal);
+        cycleFogModeButton.frame = CGRect(x: 50, y: view.frame.height - 250, width: 150, height: 50);
+        cycleFogModeButton
+            .backgroundColor = UIColor.cyan;
+        cycleFogModeButton.addTarget(self, action: #selector(self.cycleFogMode), for: .touchUpInside);
+        view.addSubview(cycleFogModeButton);
+        
+        fogModeText = UITextField();
+        fogModeText?.frame = CGRect(x: 200, y: view.frame.height - 100, width: 150, height: 50);
+        fogModeText?.isUserInteractionEnabled = false;
+        fogModeText?.textColor = UIColor.black;
+        fogModeText?.backgroundColor = UIColor.orange;
+        fogModeText?.textAlignment = NSTextAlignment.center;
+        view.addSubview(fogModeText!);
+        fogModeTracker = 0;
+        setFogModeText();
+    }
+    
+    @objc func cycleFogMode(_sender: UIButton) {
+        NextFogMode(game);
+        fogModeTracker! += 1;
+        setFogModeText();
+    }
+    
+    @objc func setFogDensity(_sender: UITextField) {
+        if let input = Float(_sender.text!) {
+            ChangeFogDensity(game, input);
+        }
+    }
+    
+    @objc func setFogStart(_sender: UITextField) {
+        if let input = Float(_sender.text!) {
+            ChangeFogStart(game, input);
+        }
+    }
+    
+    @objc func setFogEnd(_sender: UITextField) {
+        if let input = Float(_sender.text!) {
+            ChangeFogEnd(game, input);
+        }
+    }
+    
+    @objc func toggleFog(_sender: UIButton) {
+        ToggleFog(game);
+    }
     
     @objc func toggleFlashlight(_sender: UIButton) {
         ToggleFlashlight(game);
     }
+    
     @objc func toggleDayNight(_sender: UIButton) {
         ToggleDayNight(game);
     }

@@ -89,6 +89,11 @@ public:
     GLKVector3 camRot;
     void setLight(GLuint i, Light light);
     void setAmbientLight(float power);
+    void setFogEnabled(bool fogEnabled);
+    void setFogMode(int fogMode);
+    void setFogDensity(float fogDensity);
+    void setFogStart(float fogStart);
+    void setFogEnd(float fogEnd);
 };
 
 #endif /* Renderer_hpp */

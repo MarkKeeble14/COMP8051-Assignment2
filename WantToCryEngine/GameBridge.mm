@@ -43,3 +43,23 @@ extern "C" void ToggleDayNight(struct Game* inThis) {
 extern "C" void ToggleFlashlight(struct Game* inThis) {
     inThis->ToggleFlashlight();
 }
+
+extern "C" void ToggleFog(struct Game* inThis) {
+    inThis->ToggleFog();
+}
+
+extern "C" void NextFogMode(struct Game* inThis) {
+    inThis->NextFogMode();
+}
+
+extern "C" void ChangeFogDensity(struct Game* inThis, float changeBy) {
+    inThis->ChangeFogDensity(changeBy);
+}
+
+extern "C" void ChangeFogEnd(struct Game* inThis, float changeBy) {
+    inThis->ChangeFogEnd(changeBy);
+}
+
+extern "C" void ChangeFogStart(struct Game* inThis, float changeBy) {
+    inThis->ChangeFogStart(changeBy);
+}

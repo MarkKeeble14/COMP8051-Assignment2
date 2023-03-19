@@ -25,6 +25,8 @@ enum
     UNIFORM_FOGACTIVE_BOOL,
     UNIFORM_FOGSTART_FLOAT,
     UNIFORM_FOGFULL_FLOAT,
+    UNIFORM_FOG_MODE_INT,
+    UNIFORM_FOG_DENSITY_FLOAT,
     UNIFORM_FOGCOLOR_VEC4,
     UNIFORM_LIGHTS_BUFFERBLOCK,
     UNIFORM_AMBIENT_LIGHT,
@@ -219,6 +221,8 @@ void Renderer::setup(GLKView* view){
     uniforms[UNIFORM_FOGACTIVE_BOOL] = glGetUniformLocation(programObject, "fogActive");
     uniforms[UNIFORM_FOGSTART_FLOAT] = glGetUniformLocation(programObject, "fogStart");
     uniforms[UNIFORM_FOGFULL_FLOAT] = glGetUniformLocation(programObject, "fogFull");
+    uniforms[UNIFORM_FOG_MODE_INT] = glGetUniformLocation(programObject, "fogMode");
+    uniforms[UNIFORM_FOG_DENSITY_FLOAT] = glGetUniformLocation(programObject, "fogDensity");
     uniforms[UNIFORM_FOGCOLOR_VEC4] = glGetUniformLocation(programObject, "fogColor");
     //As suspected, uniform array-of-struct items seem to store components contigiously.
     //This means we *can* avoid getting the position of each light struct item separately.
@@ -426,11 +430,38 @@ void Renderer::setEnvironment(float fogStartDist, float fogFullDist, const GLKVe
         glUniform1f(uniforms[UNIFORM_FOGSTART_FLOAT], fogStartDist);
         glUniform1f(uniforms[UNIFORM_FOGFULL_FLOAT], fogFullDist);
         glUniform4f(uniforms[UNIFORM_FOGCOLOR_VEC4], color.x, color.y, color.z, color.w);
+        glUniform1f(uniforms[UNIFORM_FOG_DENSITY_FLOAT], 1.0);
+        glUniform1i(uniforms[UNIFORM_FOG_MODE_INT], 0);
     } else {
         //Conversely, zero is false.
         glUniform1i(uniforms[UNIFORM_FOGACTIVE_BOOL], 0);
     }
     glClearColor(color.x, color.y, color.z, color.w);
+}
+
+void Renderer::setFogEnabled(bool fogEnabled) {
+    NSLog(@"Fog Enabled: %d", fogEnabled);
+    glUniform1i(uniforms[UNIFORM_FOGACTIVE_BOOL], fogEnabled);
+}
+
+void Renderer::setFogMode(int fogMode) {
+    NSLog(@"Fog Mode: %d", fogMode);
+    glUniform1i(uniforms[UNIFORM_FOG_MODE_INT], fogMode);
+}
+
+void Renderer::setFogDensity(float fogDensity) {
+    NSLog(@"Fog Density: %f", fogDensity);
+    glUniform1f(uniforms[UNIFORM_FOG_DENSITY_FLOAT], fogDensity);
+}
+
+void Renderer::setFogStart(float fogStart) {
+    NSLog(@"Fog Start: %f", fogStart);
+    glUniform1f(uniforms[UNIFORM_FOGSTART_FLOAT], fogStart);
+}
+
+void Renderer::setFogEnd(float fogEnd) {
+    NSLog(@"Fog End: %f", fogEnd);
+    glUniform1f(uniforms[UNIFORM_FOGFULL_FLOAT], fogEnd);
 }
 
 void Renderer::setAmbientLight(float power) {

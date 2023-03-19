@@ -47,6 +47,8 @@ uniform sampler2D tex;
 
 //fog stuff
 uniform bool fogActive;
+uniform int fogMode;
+uniform float fogDensity;
 uniform float fogStart;
 uniform float fogFull;
 uniform vec4 fogColor;
@@ -132,6 +134,14 @@ float FogPowerLinear(){
     return clamp((fogFull - v_dist)/(fogFull - fogStart), 0.0, 1.0);
 }
 
+float FogPowerExponential() {
+    return clamp((1.0 / pow(2.0, v_dist * fogDensity)), 0.0, 1.0);
+}
+
+float FogPowerDoubleExponential() {
+    return clamp((1.0 / pow(2.0, pow(v_dist * fogDensity, 2.0))), 0.0, 1.0);
+}
+
 void main()
 {
     vec4 lightingResult = vec4(ambientLight, ambientLight, ambientLight, 1);
@@ -141,7 +151,19 @@ void main()
     }
     
     if(fogActive){
-        float fogPower = FogPowerLinear();
+        float fogPower;
+        switch (fogMode) {
+            case 0:
+                fogPower = FogPowerLinear();
+                break;
+            case 1:
+                fogPower = FogPowerExponential();
+            case 2:
+                fogPower = FogPowerDoubleExponential();
+                break;
+        }
+        
+        
         o_fragColor = (texture(tex, v_texCoord) * v_color * lightingResult) * fogPower + fogColor * (1.0 - fogPower);
     } else {
         o_fragColor = texture(tex, v_texCoord) * v_color * lightingResult;
