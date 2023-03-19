@@ -49,61 +49,7 @@ Game::Game(GLKView* view){
     }
     
     //Create game objects
-    /*
-    objects["static"] = GameObject(GLKVector3{0, -1, -5}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
-    objects["static"].preloadedGeometry = loadedGeometry["cube"];
-    objects["static"].textureIndex = textures["test"];
-     */
-    
-    /*
-    for(int i = 0; i <= 100; i++){
-        std::string wb = std::string("wallblock").append(std::to_string(i));
-        objects[wb] = GameObject(GLKVector3{2, -1, -50.0f + i}, GLKVector3{0, 0, 0}, GLKVector3{1, 2, 1});
-        objects[wb].preloadedGeometry = loadedGeometry["cube"];
-        objects[wb].textureIndex = textures["tile"];
-    }
-     */
-    
-    /*
-    objects["bottom"] = GameObject(GLKVector3{0, -5, 0}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
-    objects["bottom"].preloadedGeometry = loadedGeometry["monkey"];
-    objects["bottom"].color = GLKVector4{0, 0, .25, 1};
-    objects["bottom"].textureIndex = textures[""];
-
-    objects["top"] = GameObject(GLKVector3{0, 5, 0}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
-    objects["top"].preloadedGeometry = loadedGeometry["monkey"];
-    objects["top"].color = GLKVector4{.5, .5, 0, 1};
-    objects["top"].textureIndex = textures[""];
-
-    objects["left"] = GameObject(GLKVector3{-5, 0, 0}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
-    objects["left"].preloadedGeometry = loadedGeometry["monkey"];
-    objects["left"].color = GLKVector4{1, 0, 0, 1};
-    objects["left"].textureIndex = textures[""];
-
-    objects["far"] = GameObject(GLKVector3{-15, 0, 0}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
-    objects["far"].preloadedGeometry = loadedGeometry["monkey"];
-    objects["far"].color = GLKVector4{1, 0, 0, 1};
-    objects["far"].textureIndex = textures[""];
-    
-    objects["right"] = GameObject(GLKVector3{5, 0, 0}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
-    objects["right"].preloadedGeometry = loadedGeometry["monkey"];
-    objects["right"].color = GLKVector4{0, 1, 0, 1};
-    objects["right"].textureIndex = textures["tile"];
-
-    objects["back"] = GameObject(GLKVector3{0, 0, 5}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
-    objects["back"].preloadedGeometry = loadedGeometry["monkey"];
-    objects["back"].color = GLKVector4{.5, 0, .5, 1};
-    objects["back"].textureIndex = textures["tile"];
-    */
-    
-    /*
-    objects["victim"] =  GameObject(GLKVector3{0, 1, -5}, GLKVector3{0, 4.712, 0}, GLKVector3{1, 1, 1});
-    objects["victim"].preloadedGeometry = loadedGeometry["monkey"];
-    objects["victim"].color = GLKVector4{0, 0.25, .5, 1};
-    objects["victim"].textureIndex = textures[""];
-    */
-    
-    objects["crate"] = GameObject(GLKVector3{0, 0, -2}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
+    objects["crate"] = GameObject(GLKVector3{0, 0, -2.5}, GLKVector3{0, 0, 0}, GLKVector3{1, 1, 1});
     objects["crate"].preloadedGeometry = loadedGeometry["cube"];
     objects["crate"].textureIndex = textures["crate"];
     
