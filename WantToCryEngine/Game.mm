@@ -175,8 +175,11 @@ void Game::EventSinglePan(GLKVector2 input){
     objects["victim"].transform.rotation.x += input.x;
     objects["victim"].transform.rotation.y += input.y;
      */
+//    renderer.camRot.y -= input.y;
     renderer.camRot.y -= input.y;
-    renderer.camRot.x -= input.x;
+    renderer.camPos.z += sin(renderer.camRot.y) * input.x * -5;
+//    renderer.camPos.y += input.y;
+    
 }
 
 void Game::EventDoublePan(GLKVector2 input){
