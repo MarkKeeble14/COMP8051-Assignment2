@@ -147,7 +147,7 @@ void Game::Update(){
     l.color = GLKVector3{0.2, 0.2, 1};
     l.direction = rotToDir(renderer.camRot);
     l.position = renderer.camPos;
-    if (flashlightEnabled) {        ∑
+    if (flashlightEnabled) {
         l.power = 1;
     } else {
         l.power = 0;
